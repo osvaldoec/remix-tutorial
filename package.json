@@ -7,9 +7,14 @@
     "build": "remix build",
     "dev": "remix dev --manual",
     "start": "remix-serve ./build/index.js",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "seed":"esbuild prisma/seed.ts --outfile=node_modules/tmp-seed.cjs --bundle --format=cjs --external:prisma --external:@prisma/client && node node_modules/tmp-seed.cjs --preview-feature"
+  },
+  "prisma": {
+    "seed": "ts-node --require tsconfig-paths/register prisma/seed.ts"
   },
   "dependencies": {
+    "@prisma/client": "^5.3.1",
     "@remix-run/css-bundle": "^2.0.0",
     "@remix-run/node": "^2.0.0",
     "@remix-run/react": "^2.0.0",
@@ -23,7 +28,11 @@
     "@remix-run/eslint-config": "^2.0.0",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "esbuild": "^0.19.4",
     "eslint": "^8.38.0",
+    "prisma": "^5.3.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.6"
   },
   "engines": {
